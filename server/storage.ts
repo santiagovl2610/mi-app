@@ -67,8 +67,13 @@ export class MemStorage implements IStorage {
   async createMessage(insertMessage: InsertMessage): Promise<Message> {
     const id = randomUUID();
     const message: Message = {
-      ...insertMessage,
+      twilioMessageSid: insertMessage.twilioMessageSid ?? null,
+      from: insertMessage.from,
+      to: insertMessage.to,
+      body: insertMessage.body,
+      direction: insertMessage.direction,
       id,
+      status: insertMessage.status || "received",
       timestamp: new Date()
     };
     this.messages.set(id, message);

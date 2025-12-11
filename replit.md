@@ -61,3 +61,23 @@ Preferred communication style: Simple, everyday language.
 - `@tanstack/react-query`: Async state management
 - `@radix-ui/*`: Accessible UI primitives
 - `zod`: Runtime type validation for API payloads
+
+## Webhook Configuration
+
+To receive incoming WhatsApp messages, configure your Twilio WhatsApp Sandbox or production WhatsApp sender with this webhook URL:
+
+```
+POST /api/webhook/whatsapp
+```
+
+The full URL will be: `https://your-replit-app.replit.app/api/webhook/whatsapp`
+
+## API Endpoints
+
+- `GET /api/status` - Check Twilio connection status
+- `GET /api/messages` - Retrieve message history (latest 100)
+- `GET /api/stats` - Get message statistics (24h and 7d counts)
+- `GET /api/config` - Get bot configuration
+- `PATCH /api/config` - Update bot configuration (auto-reply settings)
+- `POST /api/webhook/whatsapp` - Twilio webhook endpoint for incoming messages
+- `GET /api/health` - Health check endpoint
