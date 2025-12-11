@@ -4,3 +4,23 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+# Node modules
+node_modules/
+
+# Archivos de log
+*.log
+
+# Configuración local de Replit
+.local/
+
+# Entornos de desarrollo
+.DS_Store
+.vscode/
+*.env
+
+# Build o distribución
+dist/
+build/
+
+# Cualquier archivo generado automáticamente por el sistema
+*.tmp
