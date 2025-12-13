@@ -77,20 +77,23 @@ export async function registerRoutes(
     try {
       console.log("Incoming WhatsApp message:", req.body);
       
-      // Validate webhook signature in production
-      if (process.env.NODE_ENV === 'production') {
-        const signature = req.headers['x-twilio-signature'] as string;
-        const protocol = req.headers['x-forwarded-proto'] || req.protocol;
-        const host = req.headers['host'];
-        const url = `${protocol}://${host}${req.originalUrl}`;
-        
-        const isValid = await validateTwilioWebhookSignature(signature, url, req.body);
-        if (!isValid) {
-          console.warn('Invalid Twilio webhook signature');
-          res.status(403).send("Forbidden: Invalid signature");
-          return;
-        }
-      }
+      // ❌ DESACTIVADO EN RENDER (causa error X_REPLIT_TOKEN)
+/*
+if (process.env.NODE_ENV === 'production') {
+  const signature = req.headers['x-twilio-signature'] as string;
+  const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+  const host = req.headers['host'];
+  const url = `${protocol}://${host}${req.originalUrl}`;
+  
+  const isValid = await validateTwilioWebhookSignature(signature, url, req.body);
+  if (!isValid) {
+    console.warn('Invalid Twilio webhook signature');
+    res.status(403).send("Forbidden: Invalid signature");
+    return;
+  }
+}
+*/
+
       
       // Validate the request body
       const parseResult = twilioWebhookSchema.safeParse(req.body);
